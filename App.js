@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import {   ScrollView, StyleSheet } from 'react-native';
+import FornecedorForm from './FornecedorForm';
+import FornecedorList from './FornecedorList';
 
-export default function App() {
+const App = () => {
+  const [suppliers, setSuppliers] = useState([]);
+
+  const addSupplier = (supplier) => {
+    setSuppliers([...suppliers, { ...supplier, id: Date.now().toString() }]);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <FornecedorForm onAddSupplier={addSupplier} />
+      <FornecedorList suppliers={suppliers} setSuppliers={setSuppliers} />
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexGrow: 1,
+    padding: 20,
   },
 });
+
+export default App;
