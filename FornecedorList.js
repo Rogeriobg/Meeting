@@ -39,7 +39,8 @@ const FornecedorList = ({ suppliers, setSuppliers }) => {
 
   const filteredSuppliers = suppliers.filter(supplier =>
     supplier.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    supplier.category.toLowerCase().includes(searchTerm.toLowerCase())
+    supplier.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    supplier.address.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
